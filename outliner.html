@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML5 Outliner bookmarklet (v044ffdad45385c523e8f2be02648cba0b91e363c)</title>
+	</head>
+	<body>
+<!--		
+/**
+ * This code contains an implementation of HTML5 outlining algorithm, as described by WHATWG at [1]
+ *
+ * The copyright notice at [2] says:
+ *		(c) Copyright 2004-2009 Apple Computer, Inc., Mozilla Foundation, and Opera Software ASA.
+ *		You are granted a license to use, reproduce and create derivative works of this document.
+ *
+ * [1] http://www.whatwg.org/specs/web-apps/current-work/multipage/sections.html#outlines
+ * [2] http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html
+ *
+ * This file was built from commit 044ffdad45385c523e8f2be02648cba0b91e363c
+ * of the sources at https://github.com/sideshowbarker/h5o-dymonaz
+ */
+
+-->
+		<h1>Drag this link to your favorites bar: <a href="javascript:(function(){var i=function(b){this.sections=[];this.startingNode=b};i.prototype={heading:false,append:function(b){b.container=this;this.sections.push(b)},asHTML:function(b){var a;a=this.heading;h(a)?(a.tagName.toUpperCase()==&quot;HGROUP&quot;&amp;&amp;(a=a.getElementsByTagName(&quot;h&quot;+-j(a))[0]),a=a.textContent||a.innerText||&quot;&lt;i&gt;No text content inside &quot;+a.nodeName+&quot;&lt;/i&gt;&quot;):a=&quot;&quot;+a;if(b){var e=this.startingNode,c=e.getAttribute(&quot;id&quot;);if(!c){do c=&quot;h5o-&quot;+ ++n;while(o.getElementById(c));e.setAttribute(&quot;id&quot;,c)}a='&lt;a href=&quot;#'+
+c+'&quot;&gt;'+a+&quot;&lt;/a&gt;&quot;}return a+p(this.sections,b)}};var p=function(b,a){for(var c=&quot;&quot;,d=0;d&lt;b.length;d++)c+=&quot;&lt;li&gt;&quot;+b[d].asHTML(a)+&quot;&lt;/li&gt;&quot;;return c==&quot;&quot;?c:&quot;&lt;ol&gt;&quot;+c+&quot;&lt;/ol&gt;&quot;},q=function(b){b=b.heading;return h(b)?j(b):1},d,c,f,n,o,r=function(b){if(!h(f[f.length-1]))if(k(b)||l(b))d!=null&amp;&amp;f.push(d),d=b,c=new i(b),d.outline={sections:[c],startingNode:b,asHTML:function(a){return p(this.sections,a)}};else if(d!=null&amp;&amp;h(b)){if(c.heading)if(j(b)&gt;=q(d.outline.sections[d.outline.sections.length-1])){var a=new i(b);
+d.outline.sections.push(a);c=a;c.heading=b}else{var a=false,e=c;do{if(j(b)&lt;q(e))a=new i(b),e.append(a),c=a,c.heading=b,a=true;e=e.container}while(!a)}else c.heading=b;f.push(b)}},m=function(b){return function(a){return a&amp;&amp;a.tagName&amp;&amp;RegExp(b,&quot;i&quot;).test(a.tagName.toUpperCase())}},l=m(&quot;^BLOCKQUOTE|BODY|DETAILS|FIELDSET|FIGURE|TD$&quot;),k=m(&quot;^ARTICLE|ASIDE|NAV|SECTION$&quot;),h=m(&quot;^H[1-6]|HGROUP$&quot;),j=function(b){var a=b.tagName.toUpperCase();if(a==&quot;HGROUP&quot;)for(a=1;a&lt;=6;a++){if(b.getElementsByTagName(&quot;H&quot;+a).length&gt;
+0)return-a}else return-parseInt(a.substr(1))};HTML5Outline=function(b){n=0;o=b.ownerDocument||window.document;c=d=null;f=[];var a=b;a:for(;a;){r(a);if(a.firstChild){a=a.firstChild;continue a}for(;a;){var e=a,g=f[f.length-1];if(h(g))g==e&amp;&amp;f.pop();else{if((k(e)||l(e))&amp;&amp;!c.heading)c.heading=&quot;&lt;i&gt;Untitled &quot;+e.tagName.toUpperCase()+&quot;&lt;/i&gt;&quot;;if(k(e)&amp;&amp;f.length&gt;0){d=f.pop();c=d.outline.sections[d.outline.sections.length-1];for(g=0;g&lt;e.outline.sections.length;g++)c.append(e.outline.sections[g])}else if(l(e)&amp;&amp;
+f.length&gt;0){d=f.pop();for(c=d.outline.sections[d.outline.sections.length-1];c.sections.length&gt;0;)c=c.sections[c.sections.length-1]}else if(k(e)||l(e))c=d.outline.sections[0]}if(a.nextSibling){a=a.nextSibling;continue a}a=a==b?null:a.parentNode}}return d!=null?d.outline:null}})();
+;(function(){var c=function(a,c){for(var b=0;b&lt;a.length;b++)a[b].setAttribute(&quot;style&quot;,c)},d=HTML5Outline(document.body).asHTML(true),a=document.createElement(&quot;div&quot;);c([a],&quot;position:fixed;top:10px;right:10px;border:2px solid #000;background:rgba(255,255,255,.9);padding:15px;z-index:999;max-height:400px;overflow:auto;font-size:11px;font-family:Verdana, sans-serif;&quot;);a.innerHTML=d;c(a.getElementsByTagName(&quot;li&quot;),&quot;list-style:decimal outside;margin-left:20px;font-size:11px;font-family:Verdana, sans-serif;&quot;);
+c(a.getElementsByTagName(&quot;ol&quot;),&quot;margin: 0;padding:0;font-size:11px;font-family:Verdana, sans-serif;&quot;);c(a.getElementsByTagName(&quot;a&quot;),&quot;color:#008;text-decoration:underline;font-size:11px;font-family:Verdana, sans-serif;&quot;);var b=a.insertBefore(document.createElement(&quot;a&quot;),a.firstChild);c([b],&quot;float: right; margin: 0 0 5px 5px; padding: 5px; border: 1px #008 solid;color:#00f;background-color:#ccf;&quot;);b.innerHTML=&quot;Close&quot;;b.href=&quot;#&quot;;b.onclick=function(){document.body.removeChild(a);a=b=null};document.body.appendChild(a)})();
+;" title="H5O v044ffdad45385c523e8f2be02648cba0b91e363c">H5O v044ffdad45385c523e8f2be02648cba0b91e363c</a></h1>
+		
+		<h2>Tested in:</h2>
+		<ul>
+			<li>Opera 10.10</li>
+			<li>Firefox 3.5</li>
+		</ul>
+		<p>However, it should work normally in other modern browsers. Please <a href="http://code.google.com/p/h5o/issues/list">report a bug</a> if it doesn't.</p>
+		
+		<h2>Internet Explorer is not supported</h2>
+		<p>Except for an <a href="http://h5o.googlecode.com/files/bookmarklet.for.ie.html">older version</a> of the bookmarklet. For reasoning please see the <a href="http://code.google.com/p/h5o/wiki/ProblemsWithInternetExplorer">ProblemsWithInternetExplorer</a> wiki page.</p>
+		
+	</body>
+</html>
