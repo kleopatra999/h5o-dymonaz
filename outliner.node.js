@@ -386,3 +386,4 @@ var _generateId = function(node)
 	};
 
 }());
+exports.HTML5Outline = HTML5Outline;

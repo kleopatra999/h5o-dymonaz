@@ -7,14 +7,19 @@
     <property description="YUICompressor" name="ClosureCompiler" value="${BUILD_DIR}/closure-compiler/compiler.jar" />
 	<taskdef resource="org/tigris/subversion/svnant/svnantlib.xml">
 		<classpath>
-			<fileset dir="${BUILD_DIR}/svnant-1.3.0/lib" includes="**/*.jar" />
+			<fileset dir="${BUILD_DIR}/svnant-1.3.1/lib" includes="**/*.jar" />
 		</classpath>
 	</taskdef>
 
     <!-- SETUP -->
  
     <property description="Source Folder" name="SRC_DIR" value="src"  />
-	<loadfile description="Release version" property="RELEASE_VERSION" srcfile="../version.txt" />
+    <loadfile description="Release version" property="RELEASE_VERSION" srcfile="../version.txt">
+      <filterchain>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+
  
     <property description="Folder for completed build" name="DIST_DIR" value="./dist" />
  
@@ -39,6 +44,7 @@
             <fileset dir="${SRC_DIR}" includes="HTML5Outline.js" />
             <fileset dir="${SRC_DIR}" includes="_foot.js" />
         </concat>
+        <replace token="@VERSION" value="${RELEASE_VERSION}" file="${DIST_DIR}/outliner.debug.js" />
         <echo message="${H5O_DEBUG} built." />
   </target>
  
@@ -99,9 +105,9 @@
 			<status path="${basedir}" revisionProperty="svn.revision" />
 		</svn>
 		<echo>Sandbox Revision: ${svn.revision}</echo>
-		<property description="Full build version" name="VERSION" value="${RELEASE_VERSION}.${svn.revision}"  />
-		<property name="H5O_RELEASE_JS" value="${DIST_DIR}/outliner.${VERSION}.js" />
-		<property name="H5O_RELEASE_BOOKMARKLET" value="${DIST_DIR}/outliner.${VERSION}.html" />
+		<property description="Full build version" name="VERSION" value="${RELEASE_VERSION}"  />
+		<property name="H5O_RELEASE_JS" value="${DIST_DIR}/outliner.js" />
+		<property name="H5O_RELEASE_BOOKMARKLET" value="${DIST_DIR}/outliner.html" />
 
 		<echo message="Building ${H5O_RELEASE_JS}" />
         <concat destfile="${H5O_RELEASE_JS}">
@@ -117,6 +123,7 @@
 		
 		<loadfile property="h5o.release.notice" srcfile="${SRC_DIR}/notice.txt" />
 		<replace token="@NOTICE" value="${h5o.release.notice}" file="${H5O_RELEASE_BOOKMARKLET}" />
+		<replace token="@VERSION" value="${VERSION}" file="${H5O_RELEASE_BOOKMARKLET}" />
 		
 		<replace token="&amp;" value="&amp;amp;" file="${DIST_DIR}/HTML5OutlineBookmarklet.min.js" />
 		<replace token="&quot;" value="&amp;quot;" file="${DIST_DIR}/HTML5OutlineBookmarklet.min.js" />
