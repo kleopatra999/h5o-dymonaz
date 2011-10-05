@@ -29,10 +29,10 @@ var _sectionListAsHTML = function (sections, createLinks)
 	var retval = '';
 	
 	for (var i=0; i < sections.length; i++) {
-		retval+='<li>'+sections[i].asHTML(createLinks)+'</li>';
+		retval+='<li>'+sections[i].asHTML(createLinks)+'</li>\n';
 	}
 	
-	return (retval=='' ? retval : '<ol>'+retval+'</ol>');
+	return (retval=='' ? retval : '\n<ol>\n'+retval+'</ol>\n');
 }
 
 var _sectionHeadingRank = function(section)

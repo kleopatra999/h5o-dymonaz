@@ -8,7 +8,7 @@
  * [1] http://www.whatwg.org/specs/web-apps/current-work/multipage/sections.html#outlines
  * [2] http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html
  *
- * This file was built from commit bbeaec4f2e9eca1c78e1c9a405ba6de813461af0
+ * This file was built from commit 5dd22b574220b3bdf3215b6b362520155bf5465f
  * of the sources at https://github.com/sideshowbarker/h5o-dymonaz
  */
 (function(){
@@ -43,10 +43,10 @@ var _sectionListAsHTML = function (sections, createLinks)
 	var retval = '';
 	
 	for (var i=0; i < sections.length; i++) {
-		retval+='<li>'+sections[i].asHTML(createLinks)+'</li>';
+		retval+='<li>'+sections[i].asHTML(createLinks)+'</li>\n';
 	}
 	
-	return (retval=='' ? retval : '<ol>'+retval+'</ol>');
+	return (retval=='' ? retval : '\n<ol>\n'+retval+'</ol>\n');
 }
 
 var _sectionHeadingRank = function(section)
