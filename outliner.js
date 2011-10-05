@@ -8,7 +8,7 @@
  * [1] http://www.whatwg.org/specs/web-apps/current-work/multipage/sections.html#outlines
  * [2] http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html
  *
- * This file was built from commit 5dd22b574220b3bdf3215b6b362520155bf5465f
+ * This file was built from commit 7124b7b924c603af43314a526edfef161a68995f
  * of the sources at https://github.com/sideshowbarker/h5o-dymonaz
  */
 (function(){
